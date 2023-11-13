@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <SpaRoot>ClientApp\</SpaRoot>
-    <SpaProxyServerUrl>https://localhost:44445</SpaProxyServerUrl>
+    <SpaProxyServerUrl>http://localhost:4200</SpaProxyServerUrl>
     <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Don't publish the SPA source files, but do show them in the project files list -->
+     <!--Don't publish the SPA source files, but do show them in the project files list--> 
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />

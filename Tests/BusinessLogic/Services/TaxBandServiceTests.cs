@@ -1,18 +1,19 @@
 using BusinessLogic.Services;
 using Moq;
+using TaxCalculator.Data;
 
 namespace Tests.BusinessLogic.Services
 {
     public class TaxBandServiceTests
     {
         private TaxBandService _taxBandService;
-        private Mock<ITaxBandRepository> _taxBandRepositoryMock;
+        private Mock<IUnitOfWork> _unitOfWorkMock;
 
         [SetUp]
         public void Setup()
         {
-            _taxBandRepositoryMock = new Mock<ITaxBandRepository>();
-            _taxBandService = new TaxBandService(_taxBandRepositoryMock.Object);
+            _unitOfWorkMock = new Mock<IUnitOfWork>();
+            _taxBandService = new TaxBandService(_unitOfWorkMock.Object);
         }
 
         [Test]
