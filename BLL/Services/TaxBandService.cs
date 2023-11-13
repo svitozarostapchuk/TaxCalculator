@@ -25,9 +25,6 @@ namespace BusinessLogic.Services
             CancellationToken cancellationToken
         )
         {
-            // to delete
-            await Task.Delay(5000);
-
             var taxBands = await GetAllBands()
                 .AsNoTracking()
                 .Where(x => annualGrossSalary >= x.BottomLimit)

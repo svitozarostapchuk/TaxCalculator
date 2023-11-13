@@ -25,7 +25,7 @@ namespace TaxCalculator.Controllers
             [FromRoute] int annualGrossSalary,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var result = await _taxBandService.GetCalculatedSalaryTaxDataAsync(annualGrossSalary, default(CancellationToken));
+            var result = await _taxBandService.GetCalculatedSalaryTaxDataAsync(annualGrossSalary, cancellationToken);
             return Ok(result);
         }
     }
