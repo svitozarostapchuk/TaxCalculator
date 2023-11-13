@@ -1,0 +1,14 @@
+C:\Users\Svitozar_Ostapchuk\source\repos\TaxCalculator\DAL\bin\Debug\net6.0\TaxCalculator.Data.deps.json
+C:\Users\Svitozar_Ostapchuk\source\repos\TaxCalculator\DAL\bin\Debug\net6.0\TaxCalculator.Data.runtimeconfig.json
+C:\Users\Svitozar_Ostapchuk\source\repos\TaxCalculator\DAL\bin\Debug\net6.0\TaxCalculator.Data.dll
+C:\Users\Svitozar_Ostapchuk\source\repos\TaxCalculator\DAL\bin\Debug\net6.0\TaxCalculator.Data.pdb
+C:\Users\Svitozar_Ostapchuk\source\repos\TaxCalculator\DAL\obj\Debug\net6.0\TaxCalculator.Data.csproj.AssemblyReference.cache
+C:\Users\Svitozar_Ostapchuk\source\repos\TaxCalculator\DAL\obj\Debug\net6.0\TaxCalculator.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Svitozar_Ostapchuk\source\repos\TaxCalculator\DAL\obj\Debug\net6.0\TaxCalculator.Data.AssemblyInfoInputs.cache
+C:\Users\Svitozar_Ostapchuk\source\repos\TaxCalculator\DAL\obj\Debug\net6.0\TaxCalculator.Data.AssemblyInfo.cs
+C:\Users\Svitozar_Ostapchuk\source\repos\TaxCalculator\DAL\obj\Debug\net6.0\TaxCalculator.Data.csproj.CoreCompileInputs.cache
+C:\Users\Svitozar_Ostapchuk\source\repos\TaxCalculator\DAL\obj\Debug\net6.0\TaxCalculator.Data.dll
+C:\Users\Svitozar_Ostapchuk\source\repos\TaxCalculator\DAL\obj\Debug\net6.0\refint\TaxCalculator.Data.dll
+C:\Users\Svitozar_Ostapchuk\source\repos\TaxCalculator\DAL\obj\Debug\net6.0\TaxCalculator.Data.pdb
+C:\Users\Svitozar_Ostapchuk\source\repos\TaxCalculator\DAL\obj\Debug\net6.0\TaxCalculator.Data.genruntimeconfig.cache
+C:\Users\Svitozar_Ostapchuk\source\repos\TaxCalculator\DAL\obj\Debug\net6.0\ref\TaxCalculator.Data.dll

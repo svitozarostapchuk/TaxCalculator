@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>Tax Calculator</h1>
+
+  <div class="input-container">
+    <form #from="ngForm" (ngSubmit)="onSubmit()">
+      <label for="annualGrossSalary">Gross annual salary</label><br>
+      <input type="number" 
+        id="annualGrossSalary" 
+        name="annualGrossSalary" 
+        min="1" max="2147483647"
+        [(ngModel)]="grossAnnualSalary"
+      ><br>
+      <input type="submit" value="Calculate tax">
+    </form> 
+  </div>
+
+  <div class="results-grid">
+    <p>Gross Annual Salary, £: {{ taxCalcualtionData.grossAnnualSalary }}</p>
+    <p>Gross Monthly Salary, £:  {{ taxCalcualtionData.grossMonthlySalary }}</p>
+    <p>Net Annual Salary, £: {{ taxCalcualtionData.netAnnualSalary }}</p>
+    <p>Net Monthly Salary, £:  {{ taxCalcualtionData.netMonthlySalary }}</p>
+    <p>Annual Tax Paid, £: {{ taxCalcualtionData.annualTaxPaid }}</p>
+    <p>Monthly Tax Paid, £: {{ taxCalcualtionData.monthlyTaxPaid }}</p>
+  </div>
+
+</div>
