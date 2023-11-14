@@ -2,34 +2,43 @@
     <h1>Tax Calculator</h1>
   
     <div class="input-container">
-      <form #from="ngForm" (ngSubmit)="onSubmit()">
-        <label for="annualGrossSalary">Gross annual salary</label>
-        <input type="number" 
-            id="annualGrossSalary" 
-            name="annualGrossSalary" 
-            min="1" max="2147483647"
-            [(ngModel)]="grossAnnualSalary"
-            class="input-field"
-        >
-        <button type="submit" class="submit-button">Calculate tax</button>
-      </form> 
+        <form #taxForm="ngForm" (ngSubmit)="onSubmit()">
+            <label for="annualGrossSalary">Gross annual salary</label>
+            <input type="number" 
+                id="annualGrossSalary" 
+                name="annualGrossSalary" 
+                min="1" max="2147483647"
+                [(ngModel)]="grossAnnualSalary"
+                class="input-field"
+                required
+            >
+            <div *ngIf="taxForm.submitted && taxForm.controls['annualGrossSalary'].errors">
+                <div *ngIf="taxForm.controls['annualGrossSalary'].errors['required']">
+                    Gross annual salary is required.
+                </div>
+                <div *ngIf="taxForm.controls['annualGrossSalary'].errors['min']">
+                    Gross annual salary must be greater than 0.
+                </div>
+            </div>
+            <button type="submit" class="submit-button">Calculate tax</button>
+        </form> 
     </div>
   
     <div *ngIf="taxCalculationData$ | async as taxCalculationData; else loadingTemplate">
-      <div *ngIf="taxCalculationData; else errorTemplate">
-        <p>Gross Annual Salary, £: {{ taxCalculationData.grossAnnualSalary }}</p>
-        <p>Gross Monthly Salary, £:  {{ taxCalculationData.grossMonthlySalary }}</p>
-        <p>Net Annual Salary, £: {{ taxCalculationData.netAnnualSalary }}</p>
-        <p>Net Monthly Salary, £:  {{ taxCalculationData.netMonthlySalary }}</p>
-        <p>Annual Tax Paid, £: {{ taxCalculationData.annualTaxPaid }}</p>
-      </div>
+        <div *ngIf="taxCalculationData; else errorTemplate">
+            <p>Gross Annual Salary, £: {{ taxCalculationData.grossAnnualSalary }}</p>
+            <p>Gross Monthly Salary, £:  {{ taxCalculationData.grossMonthlySalary }}</p>
+            <p>Net Annual Salary, £: {{ taxCalculationData.netAnnualSalary }}</p>
+            <p>Net Monthly Salary, £:  {{ taxCalculationData.netMonthlySalary }}</p>
+            <p>Annual Tax Paid, £: {{ taxCalculationData.annualTaxPaid }}</p>
+        </div>
     </div>
 
     <ng-template #loadingTemplate>
-      <p>Loading...</p>
+        <p>Loading...</p>
     </ng-template>
 
     <ng-template #errorTemplate>
-      <p>An error occurred while calculating the tax. Please try again.</p>
+        <p>An error occurred while calculating the tax. Please try again.</p>
     </ng-template>
 </div>
