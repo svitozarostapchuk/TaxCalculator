@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TaxCalculatorModule } from './tax-calculator/tax-calculator.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,
