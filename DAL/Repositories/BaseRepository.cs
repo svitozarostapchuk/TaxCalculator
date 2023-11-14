@@ -14,6 +14,7 @@ namespace Data.Repositories
             _dbContext = context;
         }
 
-        public IQueryable<TEntity> GetAll() => _dbContext.Set<TEntity>();
+        public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken) =>
+            await _dbContext.Set<TEntity>().ToListAsync(cancellationToken);
     }
 }

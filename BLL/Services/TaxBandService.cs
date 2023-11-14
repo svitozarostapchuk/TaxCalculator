@@ -2,7 +2,6 @@
 using BusinessLogic.Models;
 using BusinessLogic.Services.Interfaces;
 using Data.Entities;
-using Microsoft.EntityFrameworkCore;
 using TaxCalculator.Data;
 
 namespace BusinessLogic.Services
@@ -21,10 +20,9 @@ namespace BusinessLogic.Services
             CancellationToken cancellationToken
         )
         {
-            var taxBands = await _unitOfWork.TaxBandRepository.GetAll()
-                .AsNoTracking()
+            var taxBands = (await _unitOfWork.TaxBandRepository.GetAllAsync(cancellationToken))
                 .Where(x => annualGrossSalary >= x.BottomLimit)
-                .ToArrayAsync(cancellationToken);
+                .ToArray();
 
             if (!taxBands.Any())
             {
@@ -36,7 +34,7 @@ namespace BusinessLogic.Services
             return new SalaryTaxCalculationData
             {
                 GrossAnnualSalary = annualGrossSalary,
-                GrossMonthlySalary = annualGrossSalary / 12,
+                GrossMonthlySalary = (decimal)annualGrossSalary / 12,
                 NetAnnualSalary = annualGrossSalary - annualTaxPaid,
                 NetMonthlySalary = (annualGrossSalary - annualTaxPaid) / 12,
                 AnnualTaxPaid = annualTaxPaid,
