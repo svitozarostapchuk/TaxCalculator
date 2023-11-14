@@ -7,13 +7,13 @@ namespace Data.Repositories
     public class BaseRepository<TEntity, TKey> : IBaseRepository<TEntity, TKey>
         where TEntity : class, IHasId<TKey>
     {
-        internal protected DbContext Context { get; }
+        private readonly DbContext _dbContext;
 
         public BaseRepository(DbContext context)
         {
-            Context = context;
+            _dbContext = context;
         }
 
-        public IQueryable<TEntity> GetAll() => Context.Set<TEntity>();
+        public IQueryable<TEntity> GetAll() => _dbContext.Set<TEntity>();
     }
 }

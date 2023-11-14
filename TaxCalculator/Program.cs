@@ -15,11 +15,11 @@ namespace TaxCalculator
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddDbContext<TaxCalculatorContext>(x =>
+            builder.Services.AddDbContextPool<TaxCalculatorContext>(x =>
                 x.UseSqlServer(builder.Configuration.GetConnectionString("ConStr")));
+
             builder.Services
                 .AddTransient<ITaxBandService, TaxBandService>()
-                .AddScoped<DbContext, TaxCalculatorContext>()
                 .AddScoped<ITaxBandRepository, TaxBandRepository>()
                 .AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -34,7 +34,6 @@ namespace TaxCalculator
             });
 
             builder.Services.AddControllersWithViews();
-
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();

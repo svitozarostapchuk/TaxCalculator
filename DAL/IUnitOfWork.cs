@@ -2,7 +2,7 @@
 
 namespace TaxCalculator.Data
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
         ITaxBandRepository TaxBandRepository { get; }
 

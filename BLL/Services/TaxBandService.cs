@@ -15,17 +15,12 @@ namespace BusinessLogic.Services
             _unitOfWork = unitOfWork;
         }
 
-        public IQueryable<TaxBand> GetAllBands()
-        {
-            return _unitOfWork.TaxBandRepository.GetAll();
-        }
-
         public async Task<SalaryTaxCalculationData> GetCalculatedSalaryTaxDataAsync(
             int annualGrossSalary,
             CancellationToken cancellationToken
         )
         {
-            var taxBands = await GetAllBands()
+            var taxBands = await _unitOfWork.TaxBandRepository.GetAll()
                 .AsNoTracking()
                 .Where(x => annualGrossSalary >= x.BottomLimit)
                 .ToArrayAsync(cancellationToken);

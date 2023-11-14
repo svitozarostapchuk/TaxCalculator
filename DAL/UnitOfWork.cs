@@ -11,31 +11,10 @@ namespace TaxCalculator.Data
 
         public UnitOfWork(TaxCalculatorContext dbContext, ITaxBandRepository taxBandRepository)
         {
-            _dbContext = dbContext;
-            TaxBandRepository = taxBandRepository;
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            TaxBandRepository = taxBandRepository ?? throw new ArgumentNullException(nameof(taxBandRepository));
         }
 
         public async Task CommitAsync() => await _dbContext.SaveChangesAsync();
-
-        private bool disposed = false;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposed)
-            {
-                if (disposing)
-                {
-                    _dbContext.Dispose();
-                }
-            }
-
-            disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
     }
 }

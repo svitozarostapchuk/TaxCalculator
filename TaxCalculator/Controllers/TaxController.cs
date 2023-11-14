@@ -7,15 +7,12 @@ namespace TaxCalculator.Controllers
     [Route("api/[controller]")]
     public class TaxController : ControllerBase
     {
-        private readonly ILogger<TaxController> _logger;
         private readonly ITaxBandService _taxBandService;
 
         public TaxController(
-            ILogger<TaxController> logger,
             ITaxBandService taxBandService
         )
         {
-            _logger = logger;
             _taxBandService = taxBandService;
         }
 
