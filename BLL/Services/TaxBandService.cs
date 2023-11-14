@@ -44,20 +44,11 @@ namespace BusinessLogic.Services
 
         private decimal CalculateAnnualTax(decimal annualSalary, IEnumerable<TaxBand> taxBands)
         {
-            decimal taxPaid = 0;
-
-            foreach (var band in taxBands)
-            {
-                var taxableIncomeInBand = GetTaxableIncomeInBand(annualSalary, band);
-
-                if (taxableIncomeInBand > 0)
-                {
-                    var bandTax = taxableIncomeInBand * band.Rate / 100;
-                    taxPaid += bandTax;
-                }
-            }
-
-            return taxPaid;
+            return (taxBands
+                .Select(band => new { band, taxableIncomeInBand = GetTaxableIncomeInBand(annualSalary, band) })
+                .Where(x => x.taxableIncomeInBand > 0)
+                .Select(x => x.taxableIncomeInBand * x.band.Rate / 100))
+                .Sum();
         }
 
         private decimal GetTaxableIncomeInBand(decimal annualSalary, TaxBand band)
