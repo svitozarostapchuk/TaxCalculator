@@ -1,5 +1,6 @@
 ﻿using Data.Entities.Interfaces;
 using System.ComponentModel.DataAnnotations;
+using TaxCalculator.Data.Enums;
 
 namespace Data.Entities
 {

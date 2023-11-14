@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace TaxCalculator.Controllers
 {
@@ -19,7 +20,7 @@ namespace TaxCalculator.Controllers
         [HttpGet]
         [Route("{annualGrossSalary:int}")]
         public async Task<ActionResult> GetCalculatedTax(
-            [FromRoute] int annualGrossSalary,
+            [FromRoute][Required][Range(1, int.MaxValue)] int annualGrossSalary,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             var result = await _taxBandService.GetCalculatedSalaryTaxDataAsync(annualGrossSalary, cancellationToken);

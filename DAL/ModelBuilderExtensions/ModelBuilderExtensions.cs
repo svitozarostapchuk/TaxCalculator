@@ -1,5 +1,6 @@
 ﻿using Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using TaxCalculator.Data.Enums;
 
 namespace Data.ModelBuilderExtensions
 {
@@ -12,7 +13,7 @@ namespace Data.ModelBuilderExtensions
                 {
                     Id = 1,
                     Category = TaxBandCategory.A,
-                    BottomLimit = 0,
+                    BottomLimit = 1,
                     UpperLimit = 5000,
                     Rate = 0,
                 },

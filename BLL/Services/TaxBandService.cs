@@ -1,4 +1,5 @@
-﻿using BusinessLogic.Models;
+﻿using BusinessLogic.Exceptions;
+using BusinessLogic.Models;
 using BusinessLogic.Services.Interfaces;
 using Data.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,11 @@ namespace BusinessLogic.Services
                 .AsNoTracking()
                 .Where(x => annualGrossSalary >= x.BottomLimit)
                 .ToArrayAsync(cancellationToken);
+
+            if (!taxBands.Any())
+            {
+                throw new DataNotFoundException("No tax bands were found");
+            }
 
             var annualTaxPaid = CalculateAnnualTax(annualGrossSalary, taxBands);
 

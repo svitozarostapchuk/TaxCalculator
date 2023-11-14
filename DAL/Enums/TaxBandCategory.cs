@@ -1,4 +1,4 @@
-﻿namespace Data
+﻿namespace TaxCalculator.Data.Enums
 {
     public enum TaxBandCategory
     {
