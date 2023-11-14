@@ -1,4 +1,4 @@
-export interface  SalaryTaxCalculationData {
+export interface SalaryTaxCalculationData {
     grossAnnualSalary: number;
     grossMonthlySalary: number;
     netAnnualSalary: number;
