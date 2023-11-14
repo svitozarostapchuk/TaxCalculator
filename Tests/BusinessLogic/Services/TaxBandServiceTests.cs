@@ -30,12 +30,12 @@ namespace Tests.BusinessLogic.Services
             _taxBandService = new TaxBandService(_mockUnitOfWork.Object);
         }
 
-        [TestCase(1, new[] { 1, 0.0833333333333333, 1, 0.0833333333333333, 0, 0 })]
-        [TestCase(5000, new[] { 5000, 416.6666666666667, 5000, 416.6666666666667, 0, 0 })]
-        [TestCase(5001, new[] { 5001, 416.75, 5000.8, 416.73333333333335, 0.2, 0.016666666666666666 })]
-        [TestCase(20000, new[] { 20000, 1666.6666666666667, 17000, 1416.6666666666667, 3000, 250 })]
-        [TestCase(20001, new[] { 20001, 1666.75, 17000.6, 1416.7166666666667, 3000.4, 250.03333333333333 })]
-        [TestCase(int.MaxValue, new[] { int.MaxValue, 178956970.58333334, 1288495188.2, 107374599.01666667, 858988458.8, 71582371.56666666 })]
+        [TestCase(1, new[] { 1, 0.08, 1, 0.08, 0, 0 })]
+        [TestCase(5000, new[] { 5000, 416.67, 5000, 416.67, 0, 0 })]
+        [TestCase(5001, new[] { 5001, 416.75, 5000.8, 416.73, 0.2, 0.02 })]
+        [TestCase(20000, new[] { 20000, 1666.67, 17000, 1416.67, 3000, 250 })]
+        [TestCase(20001, new[] { 20001, 1666.75, 17000.6, 1416.72, 3000.4, 250.03 })]
+        [TestCase(int.MaxValue, new[] { int.MaxValue, 178956970.58, 1288495188.2, 107374599.02, 858988458.8, 71582371.57 })]
         public async Task GetCalculatedSalaryTaxDataAsync_ReturnsExpectedResult(int annualGrossSalary,
             double[] expectedTaxCalculationData)
         {

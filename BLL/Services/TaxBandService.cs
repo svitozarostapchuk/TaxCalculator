@@ -34,11 +34,11 @@ namespace BusinessLogic.Services
             return new SalaryTaxCalculationData
             {
                 GrossAnnualSalary = annualGrossSalary,
-                GrossMonthlySalary = (decimal)annualGrossSalary / 12,
+                GrossMonthlySalary = Math.Round((decimal)annualGrossSalary / 12, 2),
                 NetAnnualSalary = annualGrossSalary - annualTaxPaid,
-                NetMonthlySalary = (annualGrossSalary - annualTaxPaid) / 12,
-                AnnualTaxPaid = annualTaxPaid,
-                MonthlyTaxPaid = annualTaxPaid / 12
+                NetMonthlySalary = Math.Round((annualGrossSalary - annualTaxPaid) / 12, 2),
+                AnnualTaxPaid = Math.Round(annualTaxPaid, 2),
+                MonthlyTaxPaid = Math.Round(annualTaxPaid / 12, 2)
             };
         }
 

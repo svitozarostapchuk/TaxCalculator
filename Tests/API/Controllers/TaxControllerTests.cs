@@ -30,9 +30,9 @@ namespace Tests.API.Controllers
                 GrossAnnualSalary = annualGrossSalary,
                 NetAnnualSalary = 19400,
                 GrossMonthlySalary = 2000,
-                NetMonthlySalary = 1616.6666666666667m,
+                NetMonthlySalary = 1616.67m,
                 AnnualTaxPaid = 4600,
-                MonthlyTaxPaid = 383.3333333333333m,
+                MonthlyTaxPaid = 383.33m,
             };
             _mockTaxBandService.Setup(x => x.GetCalculatedSalaryTaxDataAsync(annualGrossSalary, It.IsAny<CancellationToken>()))
                                .ReturnsAsync(expectedResult);
