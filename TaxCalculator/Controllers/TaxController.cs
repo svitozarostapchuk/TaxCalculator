@@ -23,7 +23,7 @@ namespace TaxCalculator.Controllers
         [HttpGet]
         [Route("{annualGrossSalary:int}")]
         public async Task<ActionResult> GetCalculatedTax(
-            [FromRoute][Required][Range(1, int.MaxValue)] int annualGrossSalary,
+            [FromRoute][Range(1, int.MaxValue)] int annualGrossSalary,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             try
