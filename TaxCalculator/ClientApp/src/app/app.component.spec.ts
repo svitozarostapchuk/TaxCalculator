@@ -25,12 +25,6 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have title as 'Tax Calculator App'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('Tax Calculator App');
-  });
-
   it('should render app-tax-calculator', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();

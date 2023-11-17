@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SalaryTaxCalculationData } from '../models/SalaryTaxCalculationData';
-import { AppConfigService } from './app-config-service.service';
+import { AppConfigService } from './app-config.service';
 
 @Injectable({
   providedIn: 'root'

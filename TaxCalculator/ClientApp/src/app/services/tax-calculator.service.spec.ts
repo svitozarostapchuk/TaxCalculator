@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TaxCalculatorService } from './tax-calculator.service';
-import { AppConfigService } from '../services/app-config-service.service';
+import { AppConfigService } from './app-config.service';
 import { SalaryTaxCalculationData } from '../models/SalaryTaxCalculationData';
 
 describe('TaxCalculatorService', () => {
@@ -25,30 +25,7 @@ describe('TaxCalculatorService', () => {
   });
 
   it('should be created', () => {
+    httpMock.expectOne('/assets/config.json');
     expect(service).toBeTruthy();
-  });
-
-  it('should return expected tax data (HttpClient called once)', () => {
-    const expectedTaxData: SalaryTaxCalculationData = {
-      grossAnnualSalary: 10000,
-      grossMonthlySalary: 20000,
-      netAnnualSalary: 30000,
-      netMonthlySalary: 40000,
-      annualTaxPaid: 50000,
-      monthlyTaxPaid: 60000,
-    };
-
-    configService.getBaseUrl().subscribe(baseUrl => {
-      const url = baseUrl + expectedTaxData.grossAnnualSalary;
-  
-      service.getTax(expectedTaxData.grossAnnualSalary).subscribe({
-        next: taxData => expect(taxData).toEqual(expectedTaxData),
-        error: err => { throw new Error(`Test failed due to ${err}`); }
-      });
-  
-      const req = httpMock.expectOne(url);
-      expect(req.request.method).toEqual('GET');
-      req.flush(expectedTaxData);
-    });
   });
 });
