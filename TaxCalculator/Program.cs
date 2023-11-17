@@ -4,6 +4,7 @@ using Data.Contexts;
 using Data.Repositories;
 using Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using TaxCalculator.API.Middlewares;
 using TaxCalculator.Data;
 
 namespace TaxCalculator
@@ -36,6 +37,12 @@ namespace TaxCalculator
             builder.Services.AddControllersWithViews();
             builder.Services.AddSwaggerGen();
 
+            builder.Host.ConfigureLogging(logging =>
+            {
+                logging.ClearProviders();
+                logging.AddConsole();
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -44,7 +51,7 @@ namespace TaxCalculator
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
