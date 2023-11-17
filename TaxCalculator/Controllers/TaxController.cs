@@ -9,15 +9,10 @@ namespace TaxCalculator.Controllers
     public class TaxController : ControllerBase
     {
         private readonly ITaxBandService _taxBandService;
-        private readonly ILogger _logger;
 
-        public TaxController(
-            ITaxBandService taxBandService,
-            ILogger logger
-        )
+        public TaxController(ITaxBandService taxBandService)
         {
             _taxBandService = taxBandService;
-            _logger = logger;
         }
 
         [HttpGet]
