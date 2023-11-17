@@ -26,16 +26,8 @@ namespace TaxCalculator.Controllers
             [FromRoute][Range(1, int.MaxValue)] int annualGrossSalary,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            try
-            {
-                var result = await _taxBandService.GetCalculatedSalaryTaxDataAsync(annualGrossSalary, cancellationToken);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message);
-                return StatusCode(500, "Internal Server Error");
-            }
+            var result = await _taxBandService.GetCalculatedSalaryTaxDataAsync(annualGrossSalary, cancellationToken);
+            return Ok(result);
         }
     }
 }
