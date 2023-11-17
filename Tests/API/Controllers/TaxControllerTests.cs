@@ -1,8 +1,6 @@
-﻿using BusinessLogic.Exceptions;
-using BusinessLogic.Models;
+﻿using BusinessLogic.Models;
 using BusinessLogic.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Moq;
 using System.Net;
 using TaxCalculator.Controllers;
@@ -13,15 +11,13 @@ namespace Tests.API.Controllers
     public class TaxControllerTests
     {
         private Mock<ITaxBandService> _mockTaxBandService;
-        private Mock<ILogger> _mockLogger;
         private TaxController _taxController;
 
         [SetUp]
         public void Setup()
         {
             _mockTaxBandService = new Mock<ITaxBandService>();
-            _mockLogger = new Mock<ILogger>();
-            _taxController = new TaxController(_mockTaxBandService.Object, _mockLogger.Object);
+            _taxController = new TaxController(_mockTaxBandService.Object);
         }
 
         [Test]
@@ -47,24 +43,6 @@ namespace Tests.API.Controllers
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual((int)HttpStatusCode.OK, result.StatusCode);
-            Assert.AreEqual(expectedResult, result.Value);
-        }
-
-        [Test]
-        public async Task GetCalculatedTax_WithExceptionThrown_Returns500Result()
-        {
-            // Arrange
-            var annualGrossSalary = 24000;
-            var expectedResult = "Internal Server Error";
-            _mockTaxBandService.Setup(x => x.GetCalculatedSalaryTaxDataAsync(annualGrossSalary, It.IsAny<CancellationToken>()))
-                               .ThrowsAsync(new DataNotFoundException());
-
-            // Act
-            var result = await _taxController.GetCalculatedTax(annualGrossSalary, CancellationToken.None) as ObjectResult;
-
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual((int)HttpStatusCode.InternalServerError, result.StatusCode);
             Assert.AreEqual(expectedResult, result.Value);
         }
     }
