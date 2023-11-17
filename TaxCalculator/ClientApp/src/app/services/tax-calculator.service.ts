@@ -9,12 +9,17 @@ import { AppConfigService } from './app-config-service.service';
 })
 
 export class TaxCalculatorService {
+  baseUrl!: string;
 
-  baseUrl = this.config.getBaseUrl();
+  constructor(private httpClient: HttpClient, private appConfigService: AppConfigService) {
+    this.appConfigService.getBaseUrl().subscribe(
+      (baseUrl) => {
+        this.baseUrl = baseUrl;
+      }
+    );
+  }
 
-  constructor(private http: HttpClient, private config: AppConfigService) { }
-  
   getTax(income: number): Observable<SalaryTaxCalculationData> {
-    return this.http.get<SalaryTaxCalculationData>(this.baseUrl + income);
+    return this.httpClient.get<SalaryTaxCalculationData>(this.baseUrl + income);
   } 
 }

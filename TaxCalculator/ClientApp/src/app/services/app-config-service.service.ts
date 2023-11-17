@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, Subject, map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,7 @@ import { Observable, tap } from 'rxjs';
 
 export class AppConfigService {
   private config: any;
+  private configLoaded = new Subject<void>();
 
   constructor(private http: HttpClient) {
     this.loadConfig().subscribe();
@@ -17,11 +18,14 @@ export class AppConfigService {
     return this.http.get('/assets/config.json').pipe(
       tap(config => {
         this.config = config;
+        this.configLoaded.next();
       })
     );
   }
 
-  getBaseUrl(): string {
-    return this.config.baseUrl;
+  getBaseUrl(): Observable<string> {
+    return this.configLoaded.pipe(
+      map(() => this.config.baseUrl)
+    );
   }
 }

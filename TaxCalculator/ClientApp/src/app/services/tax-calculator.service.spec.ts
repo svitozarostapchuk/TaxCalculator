@@ -38,16 +38,17 @@ describe('TaxCalculatorService', () => {
       monthlyTaxPaid: 60000,
     };
 
-    const grossAnnualSalary = 10000;
-    const url = configService.getBaseUrl() + grossAnnualSalary;
-
-    service.getTax(grossAnnualSalary).subscribe({
-      next: taxData => expect(taxData).toEqual(expectedTaxData),
-      error: err => { throw new Error(`Test failed due to ${err}`); }
+    configService.getBaseUrl().subscribe(baseUrl => {
+      const url = baseUrl + expectedTaxData.grossAnnualSalary;
+  
+      service.getTax(expectedTaxData.grossAnnualSalary).subscribe({
+        next: taxData => expect(taxData).toEqual(expectedTaxData),
+        error: err => { throw new Error(`Test failed due to ${err}`); }
+      });
+  
+      const req = httpMock.expectOne(url);
+      expect(req.request.method).toEqual('GET');
+      req.flush(expectedTaxData);
     });
-
-    const req = httpMock.expectOne(url);
-    expect(req.request.method).toEqual('GET');
-    req.flush(expectedTaxData);
   });
 });
